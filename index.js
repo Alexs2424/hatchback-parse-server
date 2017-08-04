@@ -25,6 +25,7 @@ var api = new ParseServer({
 var ParseDashboard = require('parse-dashboard');
 
 var dashboard = new ParseDashboard({
+  "allowInsecureHTTP": true,
   "apps": [
     {
       "serverURL": "https://hatchback.herokuapp.com/parse",
@@ -32,8 +33,15 @@ var dashboard = new ParseDashboard({
       "masterKey": "t1SzXl8JB7wOH5vT9XOJCTjG",
       "appName": "Hatchback"
     }
-  ]
-});
+  ],
+  "users": [
+    {
+      "user": "alex",
+      "pass": "$2y$10$NAUcsbkAV7NxFJyZ5P87gOX8j2ltOBSxVey8thHZdFga8OFJKTggm"
+    }
+  ],
+  "useEncryptedPasswords": true
+}, true);
 
 var app = express();
 
