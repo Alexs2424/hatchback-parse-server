@@ -16,11 +16,7 @@ var api = new ParseServer({
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
-  fileKey: 'b202e6a6-2809-491a-a126-208d436ef909',
-  serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
-  liveQuery: {
-    classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
-  }
+  serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse'  // Don't forget to change to https if needed
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
@@ -31,10 +27,10 @@ var ParseDashboard = require('parse-dashboard');
 var dashboard = new ParseDashboard({
   "apps": [
     {
-      "serverURL": "https://noisehubapp.herokuapp.com/parse",
-      "appId": "d9V5wXHp9Zj5u90y3yttNK0tYbBizRnMf2igQvS1",
-      "masterKey": "RWvT9litMDAxqISVDfRLxqV4Qc1vBmWV25FsFcJl",
-      "appName": "NoiseHub"
+      "serverURL": "https://hatchback.herokuapp.com/parse",
+      "appId": "vHOMNx9oySuKL32PYmX4eljf",
+      "masterKey": "t1SzXl8JB7wOH5vT9XOJCTjG",
+      "appName": "Hatchback"
     }
   ]
 });
@@ -51,7 +47,7 @@ app.use('/dashboard', dashboard);
 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
-  res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
+  res.status(200).send('Server is up and running!');
 });
 
 // There will be a test page available on the /test path of your server url
@@ -65,6 +61,3 @@ var httpServer = require('http').createServer(app);
 httpServer.listen(port, function() {
     console.log('parse-server-example running on port ' + port + '.');
 });
-
-// This will enable the Live Query real-time server
-ParseServer.createLiveQueryServer(httpServer);
